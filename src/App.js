@@ -1,49 +1,154 @@
 import logo from './logo.svg';
 import './App.css';
 
-import CardComponent from "./component/cardComponent.js"
+
+import { useEffect, useState } from "react"
+
+
+import AddWooblyFORM from './component/forms/AddWooblyFORM.js';
+
 
 
 
 function App() {
 
 
+  //////// useStates
+  
+  const [wooblies, setWooblies] = useState(  [ ]  )
+  console.log("STATE OF  wooblies :", wooblies)  //
+  
+  const [favWooblies, setFavWooblies] = useState(  [ ]  )
+  console.log("STATE OF  favWooblies :", favWooblies)  //
+  
+  //////// useStates
+
+
+  //////// Fetch Urls
+
+  const WOOBLY_BASE_URL = "http://localhost:3000/wooblies"
+
+  const PALS_BASE_URL = "http://localhost:3009/pals"
+
+  //////// Fetch Urls
+
+
+  useEffect( 
+    
+    ()=>{
+
+      fetch(WOOBLY_BASE_URL)
+      .then( r => r.json() )
+      .then( 
+
+        (fetchedWooblies)=>{
+ 
+
+          setWooblies( fetchedWooblies ) // Setting All Wooblies
+
+          
+            let resultOfFilter = fetchedWooblies.filter( 
+
+              (eachWoobly)=>{
+
+                return(eachWoobly.favorties === true)
+
+
+              } 
+
+            )
+
+          setFavWooblies(  [ ...resultOfFilter ]  ) // Setting Fav Wooblies
+
+        }
+
+       )
+      // .then( console.log )
+
+    } 
+  
+  
+  
+  , [] )
+
+
+
+
   //// js
-
-  let samObj ={
-
-    name: "Sam",
-    image: "https://ca.slack-edge.com/T02MD9XTF-U018W9H54N6-6bb69b64ec24-512"
-
-  }
-  let notSamObj ={
-
-    name: "NotSam",
-    image: "https://pbs.twimg.com/profile_images/1441801943916101634/3U5S-guY_400x400.jpg"
-
-  }
-
-
-
-  //// js
-
-
   return (
     <div>
 
-      <CardComponent personObj={samObj} personFavColor={"Gold"} />
 
-      <CardComponent personObj={notSamObj} personFavColor={"Magenta"}/>
+      <h1>Hey Y'all :)</h1> // Header1
+
+      <br/><br/>
+      <br/><br/>
 
 
-      {/* <CardComponent WHATYOUWANTTOCALLITONARRIVAL={INCURRENTSCOPE} /> */}
+      < AddWooblyFORM  
+      
+        //// variables
+        WOOBLY_BASE_URL={WOOBLY_BASE_URL}
 
-      {/* CardComponent(samObj) */}
+        //// functions
+
+        //// data-flow
+        wooblies={wooblies}
+        setWooblies={setWooblies}
+
+      />
+      
+
+      <br/><br/>
+      <br/><br/>
+
+
+
+
+      <h2>Woobly List</h2> // Header2
+      {
+
+        wooblies.map(
+
+          (eachObj)=>{
+
+            return(<div>
+              <h3>{eachObj.name}</h3>
+              {/* <img src={eachObj.imageURL} /> */}
+            </div>)
+
+
+          }
+        )
+
+      } 
+      {/* < WooblyList /> */}
+      <br/><br/>
+
+
+      <h2>Fav Woobly List</h2> // Header2
+      {
+
+        favWooblies.map(
+
+          (eachObj)=>{
+
+            return(<h3>{eachObj.name}</h3>)
+
+
+          }
+        )
+
+      }
+      {/* < FavWoobliesList /> */}
+      <br/><br/>
+
+
+
 
     </div>
   );
 
 
 }
-
 export default App;

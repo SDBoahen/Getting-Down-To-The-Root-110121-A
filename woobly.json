@@ -1,0 +1,41 @@
+{
+  "wooblies": [
+    {
+      "id": 1,
+      "name": "Woobly",
+      "imageURL": "THELINK",
+      "favorties": true
+    },
+    {
+      "id": 3,
+      "name": "Joobly",
+      "imageURL": "THELINK",
+      "favorties": false
+    },
+    {
+      "id": 3,
+      "name": "WaWaWa",
+      "imageURL": "THELINK",
+      "favorties": true
+    },
+    {
+      "name": "WooBaa",
+      "id": 4
+    },
+    {
+      "name": "QwertyWa",
+      "id": 5
+    },
+    {
+      "name": "Doobly",
+      "imageURL": "dgfgnhjk",
+      "id": 6
+    },
+    {
+      "name": "Confoobly",
+      "imageURL": "dfghjkl;",
+      "id": 7
+    }
+    
+  ]
+}
